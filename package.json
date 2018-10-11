@@ -1,0 +1,31 @@
+{
+  "name": "minion-army",
+  "version": "0.1.0",
+  "description": "Microservice Framework for RabbitMQ Workers",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "nyc ava --timeout=2m"
+  },
+  "keywords": [
+    "minion",
+    "microservices",
+    "worker",
+    "rabbitmq",
+    "framework"
+  ],
+  "author": "gmauricio.munoz@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pagerinc/minion/issues"
+  },
+  "homepage": "https://github.com/pagerinc/minion#readme",
+  "dependencies": {
+    "@pager/jackrabbit": "4.x.x",
+    "@pager/minion": "3.x.x",
+    "debug": "3.x.x"
+  },
+  "devDependencies": {
+    "ava": "0.x.x",
+    "nyc": "13.x.x"
+  }
+}
