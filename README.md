@@ -6,6 +6,7 @@ Microservice Framework for RabbitMQ Workers
 ```javascript
 const Army = require('@pager/minion-army');
 
+// Refer to lib/schema.js to see valid options
 const manifest = {
     connection: { // optional, if not provided will default to a rabbit connection to local host
         rabbitUrl: 'amqp://localhost'
@@ -19,7 +20,10 @@ const manifest = {
             config: { // same config as expected by minions
                 name: 'jobs.logging',
                 key: 'events.something.happened'
-            }
+            },
+            validate: joi.object({ // set a joi schema to validate handler input (optional)
+                id: joi.string().required()
+            })
         },
         {
             handler: (message) => true,
