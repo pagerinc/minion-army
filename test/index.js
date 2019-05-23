@@ -73,7 +73,7 @@ test('Worker handler fails validation', async t => {
   t.truthy(army.minions)
   t.truthy(army.minions['logging'])
 
-  await t.throws(army.minions['logging'].handle('hola'), '"value" must be an object')
+  await t.throwsAsync(() => army.minions['logging'].handle('hola'), '"value" must be an object')
 })
 
 test('Army throws if manifest is invalid', async t => {

@@ -22,16 +22,16 @@
   "dependencies": {
     "@pager/jackrabbit": "4.x.x",
     "@pager/minion": "3.x.x",
-    "@pager/minion-joi": "^1.1.0"
+    "@pager/minion-joi": "1.x.x"
   },
   "devDependencies": {
-    "ava": "0.x.x",
-    "eslint": "^5.6.1",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "nyc": "13.x.x"
+    "ava": "1.x.x",
+    "eslint": "5.x.x",
+    "eslint-config-standard": "12.x.x",
+    "eslint-plugin-import": "2.x.x",
+    "eslint-plugin-node": "9.x.x",
+    "eslint-plugin-promise": "4.x.x",
+    "eslint-plugin-standard": "4.x.x",
+    "nyc": "14.x.x"
   }
 }
