@@ -25,13 +25,13 @@
     "@pager/minion-joi": "1.x.x"
   },
   "devDependencies": {
-    "ava": "1.x.x",
-    "eslint": "5.x.x",
-    "eslint-config-standard": "12.x.x",
-    "eslint-plugin-import": "2.x.x",
-    "eslint-plugin-node": "9.x.x",
-    "eslint-plugin-promise": "4.x.x",
-    "eslint-plugin-standard": "4.x.x",
-    "nyc": "14.x.x"
+    "ava": "1.4.1",
+    "eslint": "5.16.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.17.2",
+    "eslint-plugin-node": "9.1.0",
+    "eslint-plugin-promise": "4.1.1",
+    "eslint-plugin-standard": "4.0.0",
+    "nyc": "14.1.1"
   }
 }
