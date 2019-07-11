@@ -1,6 +1,6 @@
 const test = require('ava')
 const Army = require('../lib/index')
-const joi = require('joi')
+const joi = require('@hapi/joi')
 
 test('Creates army from manifest and workers work', async t => {
   const manifest = {
