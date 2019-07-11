@@ -4,7 +4,7 @@
   "description": "Microservice Framework for RabbitMQ Workers",
   "main": "lib/index.js",
   "scripts": {
-    "test": "nyc ava --timeout=2m"
+    "test": "nyc ava --timeout=10s"
   },
   "keywords": [
     "minion",
@@ -25,7 +25,7 @@
     "@pager/minion": "3.x.x"
   },
   "devDependencies": {
-    "ava": "1.x.x",
+    "ava": "2.x.x",
     "eslint": "5.x.x",
     "eslint-config-standard": "12.x.x",
     "eslint-plugin-import": "2.x.x",
