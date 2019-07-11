@@ -5,6 +5,7 @@ Microservice Framework for RabbitMQ Workers
 
 ```javascript
 const Army = require('@pager/minion-army');
+const Joi = require('@hapi/joi');
 
 // Refer to lib/schema.js to see valid options
 const manifest = {
@@ -21,8 +22,8 @@ const manifest = {
                 name: 'jobs.logging',
                 key: 'events.something.happened'
             },
-            validate: joi.object({ // set a joi schema to validate handler input (optional)
-                id: joi.string().required()
+            validate: Joi.object({ // set a joi schema to validate handler input (optional)
+                id: Joi.string().required()
             })
         },
         {
