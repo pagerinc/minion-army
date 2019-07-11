@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "ava": "2.x.x",
-    "eslint": "5.x.x",
-    "eslint-config-standard": "12.x.x",
+    "eslint": "6.x",
+    "eslint-config-standard": "13.x",
     "eslint-plugin-import": "2.x.x",
     "eslint-plugin-node": "9.x.x",
     "eslint-plugin-promise": "4.x.x",
