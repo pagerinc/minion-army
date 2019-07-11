@@ -25,7 +25,7 @@
     "@pager/minion": "3.x.x"
   },
   "devDependencies": {
-    "ava": "1.x.x",
+    "ava": "2.x",
     "eslint": "5.x.x",
     "eslint-config-standard": "12.x.x",
     "eslint-plugin-import": "2.x.x",
