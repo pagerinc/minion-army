@@ -43,6 +43,35 @@ test('Creates army from manifest and workers work', async t => {
   t.is(await army.minions['trueing'].handle('hola'), true)
 })
 
+test('Handlers include metadata', async t => {
+  const manifest = {
+    connection: {
+      rabbit: {
+        topic: () => ({
+          publish: () => {}
+        })
+      }
+    },
+    defaults: {
+      exchangeName: 'my-exchange-name'
+    },
+    workers: [
+      {
+        handler: (message, metadata) => ({ message, metadata }),
+        config: {
+          name: 'metaworker',
+          key: 'events.something.happened'
+        },
+        validate: joi.string()
+      }
+    ]
+  }
+
+  const army = Army(manifest)
+
+  t.deepEqual(await army.minions['metaworker'].handle('hola', 'meta'), { message: 'hola', metadata: 'meta' })
+})
+
 test('Worker handler fails validation', async t => {
   const manifest = {
     connection: {
