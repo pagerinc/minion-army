@@ -102,7 +102,7 @@ test('Worker handler fails validation', async t => {
   t.truthy(army.minions)
   t.truthy(army.minions['logging'])
 
-  await t.throwsAsync(() => army.minions['logging'].handle('hola'), '"value" must be an object')
+  await t.throwsAsync(() => army.minions['logging'].handle('hola'), '"value" must be of type object')
 })
 
 test('Army throws if manifest is invalid', async t => {
@@ -121,5 +121,5 @@ test('Army throws if manifest is invalid', async t => {
     ]
   }
 
-  await t.throws(() => Army(manifest), 'child "workers" fails because ["workers" at position 0 fails because [child "handler" fails because ["handler" must be a Function]]]')
+  await t.throws(() => Army(manifest), '"workers[0].handler" must be of type function')
 })
