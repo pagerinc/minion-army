@@ -1,6 +1,6 @@
 module.exports = {
-  extends: 'standard',
+  extends: '@hapi/eslint-config-hapi',
   parserOptions: {
     ecmaVersion: 9
   }
-}
+};
