@@ -1,8 +1,10 @@
 'use strict';
 
+const { EventEmitter } = require('events');
 const Test = require('ava');
-const Army = require('../lib/index');
 const Joi = require('@hapi/joi');
+
+const Army = require('../lib/index');
 
 Test('Creates army from manifest and workers work', async (t) => {
 
@@ -44,6 +46,68 @@ Test('Creates army from manifest and workers work', async (t) => {
 
     t.is(await army.minions.logging.handle('hola'), 'hola');
     t.is(await army.minions.trueing.handle('hola'), true);
+});
+
+Test('Creates army from manifest and workers start', async (t) => {
+
+    const emitter = new EventEmitter();
+    const ack = () => {};
+    const nack = () => {};
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    queue: ({ name }) => {
+
+                        const queueEmitter = new EventEmitter();
+
+                        setImmediate(() => queueEmitter.emit('connected'));
+
+                        return Object.assign(queueEmitter, {
+                            consume: (consume) => {
+                                emitter.on(`${name}:message`, consume);
+                            }
+                        });
+                    }
+                }),
+                publish: (queue, msg, metadata) => {
+                    const defaultMetadata = { properties: { headers: {} }, fields: {} };
+                    emitter.emit(`${queue}:message`, msg, ack, nack, { ...defaultMetadata, ...metadata });
+                }
+            }
+        },
+        defaults: {
+            exchangeName: 'my-exchange-name'
+        },
+        workers: [
+            {
+                handler: (message) => message,
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            },
+            {
+                handler: (message) => true,
+                config: {
+                    name: 'trueing',
+                    key: 'events.something.happened'
+                }
+            }
+        ]
+    };
+
+    const army = Army(manifest);
+
+    t.truthy(army);
+    t.truthy(army.minions);
+
+    t.notThrows(army.start);
+
+    await t.notThrowsAsync(new Promise((resolve) => {
+        army.on('ready', resolve);
+    }));
 });
 
 Test('Handlers include metadata', async (t) => {
