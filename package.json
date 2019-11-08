@@ -1,6 +1,6 @@
 {
   "name": "@pager/minion-army",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Microservice Framework for RabbitMQ Workers",
   "main": "lib/index.js",
   "scripts": {
@@ -16,8 +16,8 @@
   "author": "gmauricio.munoz@gmail.com",
   "license": "MIT",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/pagerinc/minion-army.git"
+    "type": "git",
+    "url": "https://github.com/pagerinc/minion-army.git"
   },
   "bugs": {
     "url": "https://github.com/pagerinc/minion/issues"
