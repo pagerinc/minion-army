@@ -33,7 +33,7 @@
     "@hapi/eslint-plugin-hapi": "4.x",
     "ava": "2.x",
     "eslint": "6.x",
-    "nyc": "14.x"
+    "nyc": "15.x"
   },
   "renovate": {
     "extends": [
