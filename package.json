@@ -29,7 +29,7 @@
     "@pager/minion": "3.x"
   },
   "devDependencies": {
-    "@hapi/eslint-config-hapi": "12.x",
+    "@hapi/eslint-config-hapi": "13.x",
     "@hapi/eslint-plugin-hapi": "4.x",
     "ava": "2.x",
     "eslint": "6.x",
