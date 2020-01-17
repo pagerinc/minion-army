@@ -25,7 +25,7 @@
   "homepage": "https://github.com/pagerinc/minion#readme",
   "dependencies": {
     "@hapi/joi": "16.x",
-    "@pager/jackrabbit": "4.x",
+    "@pager/jackrabbit": "5.x",
     "@pager/minion": "3.x"
   },
   "devDependencies": {
