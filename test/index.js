@@ -177,6 +177,13 @@ Test('Worker handler fails validation', async (t) => {
 Test('Army throws if manifest is invalid', async (t) => {
 
     const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                })
+            }
+        },
         defaults: {
             exchangeName: 'my-exchange-name'
         },
@@ -192,4 +199,153 @@ Test('Army throws if manifest is invalid', async (t) => {
     };
 
     await t.throws(() => Army(manifest), '"workers[0].handler" must be of type function');
+});
+
+Test('Army uses same exchange for all workers unless specified', async (t) => {
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                })
+            }
+        },
+        defaults: {
+            exchangeName: 'my-exchange-name'
+        },
+        workers: [
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            },
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging.else',
+                    key: 'events.something.else.happened'
+                }
+            }
+        ]
+    };
+
+    const army = Army(manifest);
+    t.deepEqual(Object.keys(army.exchangeMap), ['topic.my-exchange-name']);
+});
+
+Test('Army uses same legacy handler name default', async (t) => {
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                })
+            }
+        },
+        workers: [
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            },
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging.else',
+                    key: 'events.something.else.happened'
+                }
+            }
+        ]
+    };
+
+    const army = Army(manifest);
+    t.deepEqual(Object.keys(army.exchangeMap), ['topic.logging', 'topic.logging.else']);
+});
+
+Test('Army uses connection override', async (t) => {
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                })
+            },
+            exchange: {}
+        },
+        workers: [
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            },
+            {
+                handler: () => {},
+                config: {
+                    name: 'logging.else',
+                    key: 'events.something.else.happened'
+                }
+            }
+        ]
+    };
+
+    const army = Army(manifest);
+    t.deepEqual(Object.keys(army.exchangeMap), []);
+});
+
+Test('Army uses worker exchange overrides', async (t) => {
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                }),
+                direct: () => ({
+                    publish: () => {}
+                })
+            }
+        },
+        defaults: {
+            exchangeName: 'some-exchange-name'
+        },
+        workers: [
+            {
+                handler: () => {},
+                config: {
+                    name: 'type.override',
+                    key: 'events.something.happened',
+                    exchangeType: 'direct',
+                    exchangeName: 'events.something.happened'
+                }
+            },
+            {
+                handler: () => {},
+                config: {
+                    name: 'name.override',
+                    key: 'events.something.else.happened',
+                    exchangeName: 'my-other-exchange'
+                }
+            },
+            {
+                handler: () => {},
+                config: {
+                    name: 'exchange.override',
+                    key: 'events.something.more.happened',
+                    exchange: {} // exchange objects are not validated at this moment
+                }
+            }
+        ]
+    };
+
+    const army = Army(manifest);
+    t.deepEqual(Object.keys(army.exchangeMap), ['direct.events.something.happened', 'topic.my-other-exchange']);
 });
