@@ -31,13 +31,18 @@
   "devDependencies": {
     "@hapi/eslint-config-hapi": "13.x",
     "@hapi/eslint-plugin-hapi": "4.x",
+    "@pager/semantic-release-config": "1.x",
     "ava": "2.x",
     "eslint": "6.x",
-    "nyc": "15.x"
+    "nyc": "15.x",
+    "semantic-release": "17.x"
   },
   "renovate": {
     "extends": [
       "github>pagerinc/renovate-config"
     ]
+  },
+  "release": {
+    "extends": "@pager/semantic-release-config"
   }
 }
