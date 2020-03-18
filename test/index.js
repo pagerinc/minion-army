@@ -105,12 +105,15 @@ Test('Creates army from manifest and workers start', async (t) => {
     t.truthy(army);
     t.truthy(army.minions);
 
-    t.notThrows(army.start);
-
-    await t.notThrowsAsync(new Promise((resolve) => {
+    army.on('error', (err) => t.fail(err));
+    const armyReady = new Promise((resolve) => {
 
         army.on('ready', resolve);
-    }));
+    });
+
+    t.notThrows(army.start);
+
+    await t.notThrowsAsync(armyReady);
 });
 
 Test('Handlers include metadata', async (t) => {
