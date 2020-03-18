@@ -105,10 +105,10 @@ Test('Creates army from manifest and workers start', async (t) => {
     t.truthy(army);
     t.truthy(army.minions);
 
-    army.on('error', (err) => t.fail(err));
-    const armyReady = new Promise((resolve) => {
+    const armyReady = new Promise((resolve, reject) => {
 
         army.on('ready', resolve);
+        army.on('error', reject);
     });
 
     t.notThrows(army.start);
