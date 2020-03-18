@@ -41,6 +41,8 @@ Test('Creates army from manifest and workers work', async (t) => {
 
     t.truthy(army);
     t.truthy(army.minions);
+
+    t.is(Object.keys(army.minions).length, 2);
     t.truthy(army.minions.logging);
     t.truthy(army.minions.trueing);
 
@@ -104,6 +106,13 @@ Test('Creates army from manifest and workers start', async (t) => {
 
     t.truthy(army);
     t.truthy(army.minions);
+
+    t.is(Object.keys(army.minions).length, 2);
+    t.truthy(army.minions.logging);
+    t.truthy(army.minions.trueing);
+
+    t.is(await army.minions.logging.handle('hola'), 'hola');
+    t.is(await army.minions.trueing.handle('hola'), true);
 
     const armyReady = new Promise((resolve, reject) => {
 
