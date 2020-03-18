@@ -66,12 +66,14 @@ Test('Creates army from manifest and workers start', async (t) => {
 
                         return Object.assign(queueEmitter, {
                             consume: (consume) => {
+
                                 emitter.on(`${name}:message`, consume);
                             }
                         });
                     }
                 }),
                 publish: (queue, msg, metadata) => {
+
                     const defaultMetadata = { properties: { headers: {} }, fields: {} };
                     emitter.emit(`${queue}:message`, msg, ack, nack, { ...defaultMetadata, ...metadata });
                 }
@@ -106,6 +108,7 @@ Test('Creates army from manifest and workers start', async (t) => {
     t.notThrows(army.start);
 
     await t.notThrowsAsync(new Promise((resolve) => {
+
         army.on('ready', resolve);
     }));
 });
@@ -201,7 +204,7 @@ Test('Army throws if manifest is invalid', async (t) => {
     await t.throws(() => Army(manifest), '"workers[0].handler" must be of type function');
 });
 
-Test('Army uses same exchange for all workers unless specified', async (t) => {
+Test('Army uses same exchange for all workers unless specified', (t) => {
 
     const manifest = {
         connection: {
@@ -236,7 +239,7 @@ Test('Army uses same exchange for all workers unless specified', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), ['topic.my-exchange-name']);
 });
 
-Test('Army uses same legacy handler name default', async (t) => {
+Test('Army uses same legacy handler name default', (t) => {
 
     const manifest = {
         connection: {
@@ -268,7 +271,7 @@ Test('Army uses same legacy handler name default', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), ['topic.logging', 'topic.logging.else']);
 });
 
-Test('Army uses connection override', async (t) => {
+Test('Army uses connection override', (t) => {
 
     const manifest = {
         connection: {
@@ -301,7 +304,7 @@ Test('Army uses connection override', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), []);
 });
 
-Test('Army uses worker exchange overrides', async (t) => {
+Test('Army uses worker exchange overrides', (t) => {
 
     const manifest = {
         connection: {
