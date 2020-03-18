@@ -65,6 +65,7 @@ Test('Creates army from manifest and workers start', async (t) => {
                         const queueEmitter = new EventEmitter();
 
                         setImmediate(() => queueEmitter.emit('connected'));
+                        setImmediate(() => queueEmitter.emit('bound'));
 
                         return Object.assign(queueEmitter, {
                             consume: (consume) => {
@@ -186,7 +187,7 @@ Test('Worker handler fails validation', async (t) => {
     t.truthy(army.minions);
     t.truthy(army.minions.logging);
 
-    await t.throwsAsync(() => army.minions.logging.handle('hola'), '"value" must be of type object');
+    await t.throwsAsync(() => army.minions.logging.handle('hola'), null, '"value" must be of type object');
 });
 
 Test('Army throws if manifest is invalid', async (t) => {
@@ -213,7 +214,7 @@ Test('Army throws if manifest is invalid', async (t) => {
         ]
     };
 
-    await t.throws(() => Army(manifest), '"workers[0].handler" must be of type function');
+    await t.throws(() => Army(manifest), null, '"workers[0].handler" must be of type function');
 });
 
 Test('Army uses same exchange for all workers unless specified', (t) => {
