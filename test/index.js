@@ -41,6 +41,8 @@ Test('Creates army from manifest and workers work', async (t) => {
 
     t.truthy(army);
     t.truthy(army.minions);
+
+    t.is(Object.keys(army.minions).length, 2);
     t.truthy(army.minions.logging);
     t.truthy(army.minions.trueing);
 
@@ -63,15 +65,18 @@ Test('Creates army from manifest and workers start', async (t) => {
                         const queueEmitter = new EventEmitter();
 
                         setImmediate(() => queueEmitter.emit('connected'));
+                        setImmediate(() => queueEmitter.emit('bound'));
 
                         return Object.assign(queueEmitter, {
                             consume: (consume) => {
+
                                 emitter.on(`${name}:message`, consume);
                             }
                         });
                     }
                 }),
                 publish: (queue, msg, metadata) => {
+
                     const defaultMetadata = { properties: { headers: {} }, fields: {} };
                     emitter.emit(`${queue}:message`, msg, ack, nack, { ...defaultMetadata, ...metadata });
                 }
@@ -103,11 +108,22 @@ Test('Creates army from manifest and workers start', async (t) => {
     t.truthy(army);
     t.truthy(army.minions);
 
+    t.is(Object.keys(army.minions).length, 2);
+    t.truthy(army.minions.logging);
+    t.truthy(army.minions.trueing);
+
+    t.is(await army.minions.logging.handle('hola'), 'hola');
+    t.is(await army.minions.trueing.handle('hola'), true);
+
+    const armyReady = new Promise((resolve, reject) => {
+
+        army.on('ready', resolve);
+        army.on('error', reject);
+    });
+
     t.notThrows(army.start);
 
-    await t.notThrowsAsync(new Promise((resolve) => {
-        army.on('ready', resolve);
-    }));
+    await t.notThrowsAsync(armyReady);
 });
 
 Test('Handlers include metadata', async (t) => {
@@ -171,7 +187,7 @@ Test('Worker handler fails validation', async (t) => {
     t.truthy(army.minions);
     t.truthy(army.minions.logging);
 
-    await t.throwsAsync(() => army.minions.logging.handle('hola'), '"value" must be of type object');
+    await t.throwsAsync(() => army.minions.logging.handle('hola'), null, '"value" must be of type object');
 });
 
 Test('Army throws if manifest is invalid', async (t) => {
@@ -198,10 +214,10 @@ Test('Army throws if manifest is invalid', async (t) => {
         ]
     };
 
-    await t.throws(() => Army(manifest), '"workers[0].handler" must be of type function');
+    await t.throws(() => Army(manifest), null, '"workers[0].handler" must be of type function');
 });
 
-Test('Army uses same exchange for all workers unless specified', async (t) => {
+Test('Army uses same exchange for all workers unless specified', (t) => {
 
     const manifest = {
         connection: {
@@ -236,7 +252,7 @@ Test('Army uses same exchange for all workers unless specified', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), ['topic.my-exchange-name']);
 });
 
-Test('Army uses same legacy handler name default', async (t) => {
+Test('Army uses same legacy handler name default', (t) => {
 
     const manifest = {
         connection: {
@@ -268,7 +284,7 @@ Test('Army uses same legacy handler name default', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), ['topic.logging', 'topic.logging.else']);
 });
 
-Test('Army uses connection override', async (t) => {
+Test('Army uses connection override', (t) => {
 
     const manifest = {
         connection: {
@@ -301,7 +317,7 @@ Test('Army uses connection override', async (t) => {
     t.deepEqual(Object.keys(army.exchangeMap), []);
 });
 
-Test('Army uses worker exchange overrides', async (t) => {
+Test('Army uses worker exchange overrides', (t) => {
 
     const manifest = {
         connection: {
