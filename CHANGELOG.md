@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/pagerinc/minion-army/compare/v1.1.6...v1.1.7) (2020-03-19)
+
+
+### Bug Fixes
+
+* eslint, ava 3, circleci ([#142](https://github.com/pagerinc/minion-army/issues/142)) ([4f8beae](https://github.com/pagerinc/minion-army/commit/4f8beae0de15082a93aa734fee7447d7289d6111))
+
 ## [1.1.6](https://github.com/pagerinc/minion-army/compare/v1.1.5...v1.1.6) (2020-03-09)
 
 ## [1.1.5](https://github.com/pagerinc/minion-army/compare/v1.1.4...v1.1.5) (2020-03-07)
