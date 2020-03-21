@@ -50,6 +50,40 @@ Test('Creates army from manifest and workers work', async (t) => {
     t.is(await army.minions.trueing.handle('hola'), true);
 });
 
+Test('Fails to create army from manifest with repeated names', (t) => {
+
+    const manifest = {
+        connection: {
+            rabbit: {
+                topic: () => ({
+                    publish: () => {}
+                })
+            }
+        },
+        defaults: {
+            exchangeName: 'my-exchange-name'
+        },
+        workers: [
+            {
+                handler: (message) => message,
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            },
+            {
+                handler: (message) => message,
+                config: {
+                    name: 'logging',
+                    key: 'events.something.happened'
+                }
+            }
+        ]
+    };
+
+    t.throws(() => Army(manifest));
+});
+
 Test('Creates army from manifest and workers start', async (t) => {
 
     const emitter = new EventEmitter();
