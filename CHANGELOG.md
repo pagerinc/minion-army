@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/pagerinc/minion-army/compare/v1.1.7...v1.1.8) (2020-03-21)
+
+
+### Bug Fixes
+
+* don't allow repeated names ([#145](https://github.com/pagerinc/minion-army/issues/145)) ([682d445](https://github.com/pagerinc/minion-army/commit/682d4451475e8353baf6c8074a9341a6bcd7b065))
+
 ## [1.1.7](https://github.com/pagerinc/minion-army/compare/v1.1.6...v1.1.7) (2020-03-19)
 
 
