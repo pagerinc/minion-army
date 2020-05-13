@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/pagerinc/minion-army/compare/v1.1.8...v1.2.0) (2020-05-13)
+
+
+### Features
+
+* bubble up minion response events ([#169](https://github.com/pagerinc/minion-army/issues/169)) ([ab15bad](https://github.com/pagerinc/minion-army/commit/ab15badb8158b208d2a75f3a3ed60ecf7deb2a79))
+
 ## [1.1.8](https://github.com/pagerinc/minion-army/compare/v1.1.7...v1.1.8) (2020-03-21)
 
 
