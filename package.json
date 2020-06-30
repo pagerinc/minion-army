@@ -35,7 +35,8 @@
     "ava": "3.x",
     "eslint": "7.x",
     "nyc": "15.x",
-    "semantic-release": "17.x"
+    "semantic-release": "17.x",
+    "sinon": "9.x"
   },
   "renovate": {
     "extends": [

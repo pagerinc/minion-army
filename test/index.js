@@ -2,9 +2,11 @@
 
 const { EventEmitter } = require('events');
 const Test = require('ava');
+const Sinon = require('sinon');
 const Joi = require('@hapi/joi');
 
 const Army = require('../lib/index');
+const { warnQueuingTime } = require('../lib/utils.js');
 
 Test('Creates army from manifest and workers work', async (t) => {
 
@@ -398,4 +400,30 @@ Test('Army uses worker exchange overrides', (t) => {
 
     const army = Army(manifest);
     t.deepEqual(Object.keys(army.exchangeMap), ['direct.events.something.happened', 'topic.my-other-exchange']);
+});
+
+Test('Warns if queuing time is exceeded', (t) => {
+
+    const meta = {
+        fields: {
+            routingKey: 'test-queue'
+        },
+        properties: {
+            headers: {
+                timestamp_in_ms: 1593489656879
+            }
+        }
+    };
+    const logger = {
+        warn: () => {}
+    };
+
+    Sinon.stub(logger, 'warn').returns('hi');
+    Sinon.stub(Date, 'now').returns(1593489657880);
+
+    warnQueuingTime(logger, meta, 1000);
+
+    t.is(logger.warn.calledOnceWith({ message: 'Queuing time exceeded', queue: 'test-queue', queueingTime: 1001 }), true);
+
+    Sinon.restore();
 });
