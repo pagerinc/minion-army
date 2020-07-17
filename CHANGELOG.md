@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/pagerinc/minion-army/compare/v1.2.0...v1.3.0) (2020-07-17)
+
+
+### Features
+
+* add queueMode option ([#198](https://github.com/pagerinc/minion-army/issues/198)) ([fa4f3db](https://github.com/pagerinc/minion-army/commit/fa4f3dbabcb47f6b2f537ea32b6d7a710ba8d629))
+
 # [1.2.0](https://github.com/pagerinc/minion-army/compare/v1.1.8...v1.2.0) (2020-05-13)
 
 
