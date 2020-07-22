@@ -29,13 +29,13 @@
     "@pager/minion": "3.x"
   },
   "devDependencies": {
-    "@hapi/eslint-config-hapi": "13.x",
-    "@hapi/eslint-plugin-hapi": "4.x",
-    "@pager/semantic-release-config": "1.x",
-    "ava": "3.x",
-    "eslint": "7.x",
-    "nyc": "15.x",
-    "semantic-release": "17.x"
+    "@hapi/eslint-config-hapi": "13.0.2",
+    "@hapi/eslint-plugin-hapi": "4.3.5",
+    "@pager/semantic-release-config": "1.3.0",
+    "ava": "3.10.1",
+    "eslint": "7.5.0",
+    "nyc": "15.1.0",
+    "semantic-release": "17.1.1"
   },
   "renovate": {
     "extends": [
