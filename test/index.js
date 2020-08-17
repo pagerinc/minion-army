@@ -2,7 +2,7 @@
 
 const { EventEmitter } = require('events');
 const Test = require('ava');
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 
 const Army = require('../lib/index');
 

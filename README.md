@@ -5,7 +5,7 @@ Microservice Framework for RabbitMQ Workers
 
 ```javascript
 const Army = require('@pager/minion-army');
-const Joi = require('@hapi/joi');
+const Joi = require('joi');
 
 // Refer to lib/schema.js to see valid options
 const manifest = {

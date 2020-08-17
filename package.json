@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/pagerinc/minion#readme",
   "dependencies": {
-    "@hapi/joi": "17.x",
     "@pager/jackrabbit": "5.x",
-    "@pager/minion": "3.x"
+    "@pager/minion": "3.x",
+    "joi": "^17.2.0"
   },
   "devDependencies": {
     "@hapi/eslint-config-hapi": "13.x",
