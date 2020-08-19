@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/pagerinc/minion-army/compare/v1.3.0...v2.0.0) (2020-08-19)
+
+
+### Bug Fixes
+
+* update deps, move from @hapi/joi to joi ([#234](https://github.com/pagerinc/minion-army/issues/234)) ([fad00f6](https://github.com/pagerinc/minion-army/commit/fad00f6bbb888b824ab52ded956492639c22b496))
+
+
+### BREAKING CHANGES
+
+* using joi instead of @hapi/joi
+
 # [1.3.0](https://github.com/pagerinc/minion-army/compare/v1.2.0...v1.3.0) (2020-07-17)
 
 
