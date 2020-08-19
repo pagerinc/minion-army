@@ -13,7 +13,7 @@
     "rabbitmq",
     "framework"
   ],
-  "author": "gmauricio.munoz@gmail.com",
+  "author": "engineering@pager.com",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/pagerinc/minion#readme",
   "dependencies": {
-    "@hapi/joi": "17.x",
     "@pager/jackrabbit": "5.x",
     "@pager/minion": "3.x"
   },
@@ -34,8 +33,12 @@
     "@pager/semantic-release-config": "1.x",
     "ava": "3.x",
     "eslint": "7.x",
+    "joi": "^17.2.1",
     "nyc": "15.x",
     "semantic-release": "17.x"
+  },
+  "peerDependencies": {
+    "joi": "^17.2.0"
   },
   "renovate": {
     "extends": [
