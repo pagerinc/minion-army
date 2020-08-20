@@ -38,7 +38,7 @@
     "semantic-release": "17.x"
   },
   "peerDependencies": {
-    "joi": "^17.2.0"
+    "joi": "^17.2.1"
   },
   "renovate": {
     "extends": [
