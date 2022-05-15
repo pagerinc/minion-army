@@ -35,7 +35,7 @@
     "eslint": "7.x",
     "joi": "^17.2.1",
     "nyc": "15.x",
-    "semantic-release": "17.x"
+    "semantic-release": "19.x"
   },
   "peerDependencies": {
     "joi": "^17.2.0"
