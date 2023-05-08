@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/pagerinc/minion-army/compare/v2.0.0...v2.1.0) (2023-05-08)
+
+
+### Features
+
+* add requeue to the schema ([#453](https://github.com/pagerinc/minion-army/issues/453)) ([74a5c41](https://github.com/pagerinc/minion-army/commit/74a5c4127aee8513500edfe04760bf03ffee057f))
+
 # [2.0.0](https://github.com/pagerinc/minion-army/compare/v1.3.0...v2.0.0) (2020-08-19)
 
 
