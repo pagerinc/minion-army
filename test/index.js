@@ -4,7 +4,40 @@ const { EventEmitter } = require('events');
 const Test = require('ava');
 const Joi = require('joi');
 
+const Sinon = require('sinon');
+const { faker } = require('@faker-js/faker');
+
 const Army = require('../lib/index');
+
+const sandbox = Sinon.createSandbox();
+
+
+Test.beforeEach((t) => {
+
+    t.context.logger = {
+        child: sandbox.stub(),
+        info: sandbox.stub()
+    };
+    t.context.rabbit = {
+        topic: () => ({
+            publish: sandbox.spy()
+        }),
+        direct: () => ({
+            publish: sandbox.spy()
+        })
+    };
+    t.context.metadata = {
+        properties: {
+            headers: {
+                eventId: faker.string.uuid()
+            }
+        },
+        fields: {
+            routingKey: faker.string.uuid()
+        }
+    };
+
+});
 
 Test('Creates army from manifest and workers work', async (t) => {
 
@@ -398,4 +431,50 @@ Test('Army uses worker exchange overrides', (t) => {
 
     const army = Army(manifest);
     t.deepEqual(Object.keys(army.exchangeMap), ['direct.events.something.happened', 'topic.my-other-exchange']);
+});
+
+
+Test('Army starts with logger context', async (t) => {
+
+    const { context: { rabbit, logger, metadata } } = t;
+
+    const minionWorkerName = faker.word.sample();
+
+    const handler = sandbox.spy();
+
+    const manifest = {
+        connection: {
+            rabbit
+        },
+        defaults: {
+            exchangeName: faker.word.sample()
+        },
+        workers: [
+            {
+                handler,
+                config: {
+                    name: minionWorkerName,
+                    key: faker.word.sample()
+                }
+            }
+        ],
+        logger
+    };
+
+    const army = Army(manifest);
+    t.truthy(army);
+
+    const event = {
+        data: faker.word.sample()
+    };
+
+    const childLogger = sandbox.spy();
+
+    t.context.logger.child.returns(childLogger);
+
+    await army.minions[minionWorkerName].handle(event, metadata);
+
+    Sinon.assert.calledOnceWithExactly(logger.child, { eventId: metadata.properties.headers.eventId, routingKey: metadata.fields.routingKey, minionWorkerName });
+
+    Sinon.assert.calledOnceWithExactly(handler, event, metadata, { logger: childLogger });
 });
