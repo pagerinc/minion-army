@@ -38,7 +38,8 @@
     "semantic-release": "21.x"
   },
   "peerDependencies": {
-    "joi": "^17.2.0"
+    "joi": "^17.2.0",
+    "newrelic": "11.x"
   },
   "renovate": {
     "extends": [
