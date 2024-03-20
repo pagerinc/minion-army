@@ -1,6 +1,6 @@
 {
   "name": "@pager/minion-army",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Microservice Framework for RabbitMQ Workers",
   "main": "lib/index.js",
   "scripts": {

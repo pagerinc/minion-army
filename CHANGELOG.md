@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/pagerinc/minion-army/compare/v2.1.0...v2.2.0) (2024-03-20)
+
+
+### Features
+
+* **ODIN-13:** set NR transaction name based on worker name ([#458](https://github.com/pagerinc/minion-army/issues/458)) ([b0bb358](https://github.com/pagerinc/minion-army/commit/b0bb3583bcd9adfeb82653ce62e95a506d922a04))
+
 # [2.1.0](https://github.com/pagerinc/minion-army/compare/v2.0.0...v2.1.0) (2023-05-08)
 
 
