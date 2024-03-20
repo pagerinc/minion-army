@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/pagerinc/minion-army/compare/v2.2.0...v2.2.1) (2024-03-20)
+
+
+### Bug Fixes
+
+* **ODIN-13:** patch version bump ([#459](https://github.com/pagerinc/minion-army/issues/459)) ([70a1bc2](https://github.com/pagerinc/minion-army/commit/70a1bc26df8bd77a4d7c675cfcb9a7bf0b171f91))
+
 # [2.2.0](https://github.com/pagerinc/minion-army/compare/v2.1.0...v2.2.0) (2024-03-20)
 
 
