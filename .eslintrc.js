@@ -1,7 +1,7 @@
 module.exports = {
   extends: '@hapi/eslint-config-hapi',
   parserOptions: {
-    ecmaVersion: 9
+    ecmaVersion: 12
   },
   rules: {
     'no-console': 2
