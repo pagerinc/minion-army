@@ -25,9 +25,11 @@
   "homepage": "https://github.com/pagerinc/minion#readme",
   "dependencies": {
     "@pager/jackrabbit": "5.x",
-    "@pager/minion": "3.x"
+    "@pager/minion": "3.x",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.1",
     "@hapi/eslint-config-hapi": "13.x",
     "@hapi/eslint-plugin-hapi": "4.x",
     "@pager/semantic-release-config": "2.x",
@@ -35,7 +37,8 @@
     "eslint": "7.x",
     "joi": "^17.2.1",
     "nyc": "15.x",
-    "semantic-release": "21.x"
+    "semantic-release": "21.x",
+    "sinon": "^15.0.4"
   },
   "peerDependencies": {
     "joi": "^17.2.0",
