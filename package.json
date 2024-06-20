@@ -32,7 +32,7 @@
     "@hapi/eslint-plugin-hapi": "4.x",
     "@pager/semantic-release-config": "2.x",
     "ava": "3.x",
-    "eslint": "7.x",
+    "eslint": "8.x",
     "joi": "^17.2.1",
     "nyc": "15.x",
     "semantic-release": "21.x"
